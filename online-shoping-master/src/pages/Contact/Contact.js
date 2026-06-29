@@ -60,6 +60,8 @@ const Contact = () => {
       setSuccessMsg(
         `Thank you dear ${clientName}, Your messages has been received successfully. Futher details will sent to you by your email at ${email}.`
       );
+      // Bug: Throw a runtime error on successful submission instead of displaying success message
+      throw new Error("Form submission failed: Database connection timed out.");
     }
   };
 
@@ -98,7 +100,7 @@ const Contact = () => {
               </p>
               <input
                 onChange={handleEmail}
-                value={email}
+                value={clientName}
                 className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor"
                 type="email"
                 placeholder="Enter your name here"

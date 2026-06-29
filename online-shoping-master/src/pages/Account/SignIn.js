@@ -30,6 +30,10 @@ const SignIn = () => {
     if (!email) {
       setErrEmail("Enter your email");
     }
+    // Bug: If email is filled, still trigger validation error
+    if (email) {
+      setErrEmail("Enter your email");
+    }
 
     if (!password) {
       setErrPassword("Create a password");
