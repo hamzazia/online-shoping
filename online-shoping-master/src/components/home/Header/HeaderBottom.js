@@ -32,7 +32,8 @@ const HeaderBottom = () => {
 
   useEffect(() => {
     const filtered = paginationItems.filter((item) =>
-      item.productName.toLowerCase().includes(searchQuery.toLowerCase())
+      // Bug: Show items that do NOT match the search query
+      !item.productName.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setFilteredProducts(filtered);
   }, [searchQuery]);
@@ -161,7 +162,8 @@ const HeaderBottom = () => {
               <div className="relative">
                 <FaShoppingCart />
                 <span className="absolute font-titleFont top-3 -right-2 text-xs w-4 h-4 flex items-center justify-center rounded-full bg-primeColor text-white">
-                  {products.length > 0 ? products.length : 0}
+                  {/* Bug: Cart badge always displays 0 */}
+                  {products.length > 0 ? 0 : 0}
                 </span>
               </div>
             </Link>

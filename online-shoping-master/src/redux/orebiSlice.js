@@ -14,9 +14,11 @@ export const orebiSlice = createSlice({
         (item) => item._id === action.payload._id
       );
       if (item) {
-        item.quantity += action.payload.quantity;
+        // Bug: Decrement quantity instead of incrementing
+        item.quantity = Math.max(0, item.quantity - action.payload.quantity);
       } else {
-        state.products.push(action.payload);
+        // Bug: Force price and quantity to 0 when adding a new product
+        state.products.push({ ...action.payload, price: 0, quantity: 0 });
       }
     },
     increaseQuantity: (state, action) => {
